@@ -1,5 +1,4 @@
-const input = document.querySelector("#fruit");
-// const suggestions = document.querySelector(".suggestions ul");
+const input = document.querySelector("#fruit"); //selecting the fruit input
 const resultsDropdown = document.querySelector(".suggestions ul"); // Dropdown for results
 
 const fruits = [
@@ -83,10 +82,10 @@ const fruits = [
   "Tamarind",
   "Yuzu",
 ];
-
+ 
 function search(str) {
   const input = document.querySelector("#fruit").value;
-  let results = [];
+  const results = [];
   //filter based on input
   for(let fruit of fruits){
 	//check if the input is in our fuit arr
@@ -94,28 +93,26 @@ function search(str) {
 		results.push(fruit) // adds result if theres a match
 	}
   }
-  return results;
+  return results; // return the filtered results  
 }
-
-// const results = search();
-// console.log(results);
 
 function searchHandler(e) {
-  const results = search(); // filtered results from previous function
-  showSuggestions(results)
+  const results = search(); // filtered results from search function
+  showSuggestions(results) // show suggection based on results 
 }
 
+
 function showSuggestions(results, inputVal) {
-  resultsDropdown.innerHTML = '';
+  resultsDropdown.innerHTML = ''; // clear previous results
   if (results.length > 0){
-	resultsDropdown.style.display = 'block';
+	resultsDropdown.style.display = 'block'; // show the dropdown 
   
   //populate dropdown with results
   results.forEach(fruit => {
-	const listItem = document.createElement('li')
-	listItem.textContent = fruit;
-	listItem.addEventListener('click', useSuggestion)
-	resultsDropdown.appendChild(listItem)
+	const listItem = document.createElement('li') // create li for each fruit
+	listItem.textContent = fruit; // setting the text content to the fruit
+	listItem.addEventListener('click', useSuggestion) // evernt listener to listen for click and trigger useSuggestion function 
+	resultsDropdown.appendChild(listItem) // append to dropdown 
   });
   }
   else {
@@ -124,14 +121,13 @@ function showSuggestions(results, inputVal) {
 }
 
 function useSuggestion(e) {
-  if (e.target.tagName === 'LI'){ //checking if the clicked value is in the list ,
 	const selectedFruit = e.target.textContent; //get the value of the selected fruit
 	input.value = selectedFruit;
 	resultsDropdown.innerHTML = ''; //clear after selection
 	resultsDropdown.style.display = 'none'; //hide dropdown 
   }
-}
+
 
 input.addEventListener("keyup", searchHandler);
-resultsDropdown.addEventListener("click", useSuggestion);
+resultsDropdown.addEventListener("click", useSuggestion); 
 
