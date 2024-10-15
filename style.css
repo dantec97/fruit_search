@@ -39,7 +39,9 @@ position: relative;
 
 .search-container input,
 .search-container .suggestions {
-
+  border: 1px solid transparent; /* Create a transparent border */
+  border-radius: 10px; /* Add some border radius */
+  border-image: linear-gradient(90deg, rgba(255,164,0,1) 0%, rgba(255,186,0,1) 50%, rgba(255,0,0,1) 100%) 1; /* Set gradient border */
 }
 .search-container input {
  /* TODO */
