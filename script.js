@@ -1,28 +1,137 @@
-const input = document.querySelector('#fruit');
-const suggestions = document.querySelector('.suggestions ul');
+const input = document.querySelector("#fruit");
+// const suggestions = document.querySelector(".suggestions ul");
+const resultsDropdown = document.getElementById("resultsDropdown"); // Dropdown for results
 
-const fruit = ['Apple', 'Apricot', 'Avocado 🥑', 'Banana', 'Bilberry', 'Blackberry', 'Blackcurrant', 'Blueberry', 'Boysenberry', 'Currant', 'Cherry', 'Coconut', 'Cranberry', 'Cucumber', 'Custard apple', 'Damson', 'Date', 'Dragonfruit', 'Durian', 'Elderberry', 'Feijoa', 'Fig', 'Gooseberry', 'Grape', 'Raisin', 'Grapefruit', 'Guava', 'Honeyberry', 'Huckleberry', 'Jabuticaba', 'Jackfruit', 'Jambul', 'Juniper berry', 'Kiwifruit', 'Kumquat', 'Lemon', 'Lime', 'Loquat', 'Longan', 'Lychee', 'Mango', 'Mangosteen', 'Marionberry', 'Melon', 'Cantaloupe', 'Honeydew', 'Watermelon', 'Miracle fruit', 'Mulberry', 'Nectarine', 'Nance', 'Olive', 'Orange', 'Clementine', 'Mandarine', 'Tangerine', 'Papaya', 'Passionfruit', 'Peach', 'Pear', 'Persimmon', 'Plantain', 'Plum', 'Pineapple', 'Pomegranate', 'Pomelo', 'Quince', 'Raspberry', 'Salmonberry', 'Rambutan', 'Redcurrant', 'Salak', 'Satsuma', 'Soursop', 'Star fruit', 'Strawberry', 'Tamarillo', 'Tamarind', 'Yuzu'];
+
+const fruits = [
+  "Apple",
+  "Apricot",
+  "Avocado 🥑",
+  "Banana",
+  "Bilberry",
+  "Blackberry",
+  "Blackcurrant",
+  "Blueberry",
+  "Boysenberry",
+  "Currant",
+  "Cherry",
+  "Coconut",
+  "Cranberry",
+  "Cucumber",
+  "Custard apple",
+  "Damson",
+  "Date",
+  "Dragonfruit",
+  "Durian",
+  "Elderberry",
+  "Feijoa",
+  "Fig",
+  "Gooseberry",
+  "Grape",
+  "Raisin",
+  "Grapefruit",
+  "Guava",
+  "Honeyberry",
+  "Huckleberry",
+  "Jabuticaba",
+  "Jackfruit",
+  "Jambul",
+  "Juniper berry",
+  "Kiwifruit",
+  "Kumquat",
+  "Lemon",
+  "Lime",
+  "Loquat",
+  "Longan",
+  "Lychee",
+  "Mango",
+  "Mangosteen",
+  "Marionberry",
+  "Melon",
+  "Cantaloupe",
+  "Honeydew",
+  "Watermelon",
+  "Miracle fruit",
+  "Mulberry",
+  "Nectarine",
+  "Nance",
+  "Olive",
+  "Orange",
+  "Clementine",
+  "Mandarine",
+  "Tangerine",
+  "Papaya",
+  "Passionfruit",
+  "Peach",
+  "Pear",
+  "Persimmon",
+  "Plantain",
+  "Plum",
+  "Pineapple",
+  "Pomegranate",
+  "Pomelo",
+  "Quince",
+  "Raspberry",
+  "Salmonberry",
+  "Rambutan",
+  "Redcurrant",
+  "Salak",
+  "Satsuma",
+  "Soursop",
+  "Star fruit",
+  "Strawberry",
+  "Tamarillo",
+  "Tamarind",
+  "Yuzu",
+];
 
 function search(str) {
-	let results = [];
-
-	// TODO
-
-	return results;
+  const input = document.querySelector("#fruit").value;
+  let results = [];
+  //filter based on input
+  for(let fruit of fruits){
+	//check if the input is in our fuit arr
+	if (fruit.toLowerCase().includes(input.toLowerCase())){ // checking for match regardless of casing 
+		results.push(fruit) // adds result if theres a match
+	}
+  }
+  return results;
 }
 
+// const results = search();
+// console.log(results);
+
 function searchHandler(e) {
-	// TODO
+  const results = search(); // filtered results from previous function
+  showSuggestions(results)
 }
 
 function showSuggestions(results, inputVal) {
-
-	// TODO
+  resultsDropdown.innerHTML = '';
+  if (results.length > 0){
+	resultsDropdown.style.display = 'block';
+  
+  //populate dropdown with results
+  results.forEach(fruit => {
+	const option = document.createElement('option')
+	option.value = fruit; //setting the val to fruit
+	option.textContent = fruit;
+	resultsDropdown.appendChild(option)
+  });
+  }
+  else {
+	resultsDropdown.style.display = 'none'
+  }
 }
 
 function useSuggestion(e) {
-	// TODO
+  if (e.target.tagName === 'option'){ //checking if the clicked value is in the list ,
+	const selectedFruit = e.target.value; //get the value of the selected fruit
+	input.value = selectedFruit;
+	resultsDropdown.innerHTML = ''; //clear after selection
+	resultsDropdown.style.display = 'none'; //hide dropdown 
+  }
 }
 
-input.addEventListener('keyup', searchHandler);
-suggestions.addEventListener('click', useSuggestion);
+input.addEventListener("keyup", searchHandler);
+resultsDropdown.addEventListener("click", useSuggestion);
