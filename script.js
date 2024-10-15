@@ -1,7 +1,6 @@
 const input = document.querySelector("#fruit");
 // const suggestions = document.querySelector(".suggestions ul");
-const resultsDropdown = document.getElementById("resultsDropdown"); // Dropdown for results
-
+const resultsDropdown = document.querySelector(".suggestions ul"); // Dropdown for results
 
 const fruits = [
   "Apple",
@@ -113,10 +112,10 @@ function showSuggestions(results, inputVal) {
   
   //populate dropdown with results
   results.forEach(fruit => {
-	const option = document.createElement('option')
-	option.value = fruit; //setting the val to fruit
-	option.textContent = fruit;
-	resultsDropdown.appendChild(option)
+	const listItem = document.createElement('li')
+	listItem.textContent = fruit;
+	listItem.addEventListener('click', useSuggestion)
+	resultsDropdown.appendChild(listItem)
   });
   }
   else {
@@ -125,8 +124,8 @@ function showSuggestions(results, inputVal) {
 }
 
 function useSuggestion(e) {
-  if (e.target.tagName === 'option'){ //checking if the clicked value is in the list ,
-	const selectedFruit = e.target.value; //get the value of the selected fruit
+  if (e.target.tagName === 'LI'){ //checking if the clicked value is in the list ,
+	const selectedFruit = e.target.textContent; //get the value of the selected fruit
 	input.value = selectedFruit;
 	resultsDropdown.innerHTML = ''; //clear after selection
 	resultsDropdown.style.display = 'none'; //hide dropdown 
@@ -135,3 +134,4 @@ function useSuggestion(e) {
 
 input.addEventListener("keyup", searchHandler);
 resultsDropdown.addEventListener("click", useSuggestion);
+
