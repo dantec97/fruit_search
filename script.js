@@ -97,9 +97,16 @@ function search(str) {
 }
 
 function searchHandler(e) {
-  const results = search(); // filtered results from search function
-  showSuggestions(results) // show suggection based on results 
-}
+	const inputVal = input.value.trim(); // Get the input value and trim whitespace
+  
+	if (inputVal.length > 0) {
+	  const results = search(inputVal); // Perform search only if there's input
+	  showSuggestions(results); // Show suggestions based on results
+	} else {
+	  resultsDropdown.style.display = 'none'; // Hide suggestions when input is empty
+	}
+  }
+  
 
 
 function showSuggestions(results, inputVal) {

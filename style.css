@@ -1,45 +1,88 @@
 * {
-  box-sizing: border-box;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
 }
 
 :focus {
- color: black;
+ outline: none;
 }
 
+
 body {
-  /* TODO */
+  margin: 0;
+  min-height: 85svh; /* Full viewport height */
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  background: linear-gradient(90deg, rgba(255,164,0,1) 0%, rgba(255,186,0,1) 50%, rgba(255,0,0,1) 100%);
 }
 
 input {
- /* TODO */
+  width: 400px; /* Make the input wider */
+  height: 50px; /* Make the input taller */
+  padding: 10px; /* Add padding for better spacing inside */
+  font-size: 20px; /* Increase font size */
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px; /* Add some border radius */
+  text-align: center; /* Center text inside the input */
 }
 
+
 .search-container {
- /* TODO */
+position: relative;
+
 }
+
 .search-container input,
 .search-container .suggestions {
-  /* TODO */
+
 }
 .search-container input {
  /* TODO */
 }
 .search-container .suggestions {
-   /* TODO */
+  list-style-type: none;
+  position:absolute;
+  top: 100%;position: absolute; /* Position the suggestions dropdown relative to the container */
+  top: 100%; /* Position it right below the input */
+  left: 0;
+  right: 0;
+  max-height: 200px; /* Limit height and allow scrolling if too long */
+  overflow-y: auto;
+  z-index: 1; /* Ensure it appears above other elements */
 }
 
+
 ul {
-  /* TODO */
-}
+  list-style-type: none; /* Remove bullet points */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */}
 ul.has-suggestions {
   /* TODO */
 }
 ul li {
-  /* TODO */
+  align-items: center;
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 4px;
 }
+  
 ul li:hover {
-  /* TODO */
+  background: linear-gradient(90deg, rgba(255, 187, 0, 0.308) 0%, rgba(255, 166, 0, 0.334) 50%, rgba(255, 0, 0, 0.462) 100%);
+  size: 100px;
+  transform: scale(1.1);
+
 }
+
 
 input {
    /* TODO */
