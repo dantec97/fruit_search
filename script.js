@@ -83,7 +83,7 @@ const fruits = [
   "Yuzu",
 ];
  
-function search(str) {
+const search = (str) => {
   const input = document.querySelector("#fruit").value;
   const results = [];
   //filter based on input
@@ -96,7 +96,7 @@ function search(str) {
   return results; // return the filtered results  
 }
 
-function searchHandler(e) {
+const searchHandler = (e) => {
 	const inputVal = input.value.trim(); // Get the input value and trim whitespace
   
 	if (inputVal.length > 0) {
@@ -109,7 +109,7 @@ function searchHandler(e) {
   
 
 
-function showSuggestions(results, inputVal) {
+const showSuggestions = (results, inputVal) => {
   resultsDropdown.innerHTML = ''; // clear previous results
   if (results.length > 0){
 	resultsDropdown.style.display = 'block'; // show the dropdown 
@@ -127,7 +127,7 @@ function showSuggestions(results, inputVal) {
   }
 }
 
-function useSuggestion(e) {
+const useSuggestion = (e) => {
 	const selectedFruit = e.target.textContent; //get the value of the selected fruit
 	input.value = selectedFruit;
 	resultsDropdown.innerHTML = ''; //clear after selection
