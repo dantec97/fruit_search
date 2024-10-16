@@ -83,10 +83,10 @@ const fruits = [
   "Yuzu",
 ];
  
-const search = (str) => {
-  const input = document.querySelector("#fruit").value;
-  const results = [];
-  //filter based on input
+const search = (str) => {  //filter based on input
+  const input = document.querySelector("#fruit").value; //redifine input in func
+  const results = []; // results in an empty array 
+  
   for(let fruit of fruits){
 	//check if the input is in our fuit arr
 	if (fruit.toLowerCase().includes(input.toLowerCase())){ // checking for match regardless of casing 
@@ -96,7 +96,7 @@ const search = (str) => {
   return results; // return the filtered results  
 }
 
-const searchHandler = (e) => {
+const searchHandler = (e) => { // react to user input via keyup
 	const inputVal = input.value.trim(); // Get the input value and trim whitespace
   
 	if (inputVal.length > 0) {
@@ -109,7 +109,7 @@ const searchHandler = (e) => {
   
 
 
-const showSuggestions = (results, inputVal) => {
+const showSuggestions = (results, inputVal) => { // create search suggections based on results from search()
   resultsDropdown.innerHTML = ''; // clear previous results
   if (results.length > 0){
 	resultsDropdown.style.display = 'block'; // show the dropdown 
@@ -123,11 +123,11 @@ const showSuggestions = (results, inputVal) => {
   });
   }
   else {
-	resultsDropdown.style.display = 'none'
+	resultsDropdown.style.display = 'none' // hide dropdown if theres nothing in input
   }
 }
 
-const useSuggestion = (e) => {
+const useSuggestion = (e) => { // sets clicked val as the input and hide dropdown 
 	const selectedFruit = e.target.textContent; //get the value of the selected fruit
 	input.value = selectedFruit;
 	resultsDropdown.innerHTML = ''; //clear after selection
@@ -135,6 +135,6 @@ const useSuggestion = (e) => {
   }
 
 
-input.addEventListener("keyup", searchHandler);
-resultsDropdown.addEventListener("click", useSuggestion); 
+input.addEventListener("keyup", searchHandler); //monitors the key input, triggers seachHandler
+resultsDropdown.addEventListener("click", useSuggestion);  // monitors clicks, triggers useSuggestion
 
