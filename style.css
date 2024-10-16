@@ -15,7 +15,7 @@ body {
   display: flex;
   justify-content: center; /* Horizontally center */
   align-items: center; /* Vertically center */
-  background: linear-gradient(90deg, rgba(255,164,0,1) 0%, rgba(255,186,0,1) 50%, rgba(255,0,0,1) 100%);
+  background: linear-gradient(90deg, rgba(255,164,0,1) 0%, rgba(255,186,0,1) 50%, rgb(255, 81, 0) 100%);
 }
 
 input {
